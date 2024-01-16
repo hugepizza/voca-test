@@ -19,7 +19,8 @@ export function pickCandidate(
       const target = shuffled.slice(0, levelAssignmentCount);
       return target.map((voca) => ({
         level: index + 1,
-        content: voca + " " + (index + 1),
+        content: voca,
+        // content: voca + " " + (index + 1),
         marked: false,
       }));
     })

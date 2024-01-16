@@ -76,7 +76,7 @@ function Level({ level }: { level: number }) {
     "bg-slate-950",
   ];
   const levels = colors.map((color, index) => (
-    <div className="flex flex-col grow items-center space-y-1 ">
+    <div className="flex flex-col grow items-center space-y-1" key={color}>
       <div className={`rounded-sm h-2 sm:h-8 w-full  ${color}`}></div>
       {index === level && (
         <svg
@@ -86,9 +86,9 @@ function Level({ level }: { level: number }) {
           className="w-4 h-4 sm:w-8 sm:h-8"
         >
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
         </svg>
       )}

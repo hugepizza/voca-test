@@ -16,6 +16,11 @@ function Index() {
         </p>
       </div>
       <div className="w-full h-1/2 flex flex-col items-center space-y-1">
+        <div className="h-2/5"></div>
+        <Link to={"/test"}>
+          <Button size={"lg"}>开始</Button>
+        </Link>
+        <div className="h-2"></div>
         <div className="flex flex-row  space-x-1">
           <Badge variant={"outline"}>
             <AnimatedNumbers
@@ -29,10 +34,6 @@ function Index() {
           </Badge>
           <span>人参与过此测试</span>
         </div>
-        <div className="h-1/5"></div>
-        <Link to={"/test"}>
-          <Button size={"lg"}>开始</Button>
-        </Link>
       </div>
     </div>
   );
