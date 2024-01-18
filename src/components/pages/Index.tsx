@@ -3,6 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import AnimatedNumbers from "react-animated-numbers";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import i18next from "@/i18n/_index";
+
 function Index() {
   const [users, setUsers] = useState(0);
   useEffect(() => {
@@ -21,9 +23,9 @@ function Index() {
     <div className="w-full h-full">
       <div className="w-full h-1/2 flex flex-col items-center space-y-1">
         <div className="h-2/5"></div>
-        <h1 className="text-5xl font-semibold">词汇量测试</h1>
+        <h1 className="text-5xl font-semibold">{i18next.t("title")}</h1>
         <p className="text-sm text-neutral-400">
-          词库基于{" "}
+          {i18next.t("base")}{" "}
           <a href="https://www.english-corpora.org/coca/" className="underline">
             COCA
           </a>
@@ -42,7 +44,7 @@ function Index() {
               });
             }}
           >
-            开始
+            {i18next.t("start")}
           </Button>
         </Link>
         <div className="h-2"></div>
@@ -57,7 +59,7 @@ function Index() {
               animateToNumber={users}
             />
           </Badge>
-          <span>人参与过此测试</span>
+          <span>{i18next.t('uv')}</span>
         </div>
       </div>
     </div>

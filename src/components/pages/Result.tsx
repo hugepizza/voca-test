@@ -3,6 +3,7 @@ import AnimatedNumbers from "react-animated-numbers";
 import { Link, useSearchParams } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import domtoimage from "dom-to-image";
+import i18next from "@/i18n/_index";
 
 import { useRef } from "react";
 function Result() {
@@ -12,19 +13,19 @@ function Result() {
   const score = parseInt(searchParams.get("score") || "0", 10);
   const getLevel = (score: number): [number, string] => {
     if (score < 3000) {
-      return [0, "初学者水平，加油"];
+      return [0, i18next.t("comment1")];
     } else if (score < 5000) {
-      return [1, "足够帮助你通过四六级"];
+      return [1, i18next.t("comment2")];
     } else if (score < 6000) {
-      return [2, "不错的成绩，四六级已经难不倒你了"];
+      return [2, i18next.t("comment3")];
     } else if (score < 8000) {
-      return [3, "这能让你在雅思测试中获得不错的成绩"];
+      return [3, i18next.t("comment4")];
     } else if (score < 10000) {
-      return [4, "这足够你在雅思考试中获得高分"];
+      return [4, i18next.t("comment5")];
     } else if (score < 20000) {
-      return [5, "已经能够读懂大多数英文材料"];
+      return [5, i18next.t("comment6")];
     } else {
-      return [6, "这接近或等同于英语母语者"];
+      return [6, i18next.t("comment7")];
     }
   };
   const [level, comment] = getLevel(score);
@@ -32,7 +33,8 @@ function Result() {
     if (container.current) {
       console.log("copiedContent", container.current);
       const waterMark = document.createElement("div");
-      waterMark.innerText = "结果来自 https://vocatest.online/";
+      waterMark.innerText =
+        i18next.t("resultFrom") + " https://vocatest.online/";
       waterMark.setAttribute(
         "class",
         "absolute bottom-2 right-2 font-medium text-gray-400"
@@ -56,7 +58,7 @@ function Result() {
     <div className="w-full h-full bg-white" ref={container}>
       <div className="w-full h-2/3 flex flex-col items-center space-y-1">
         <div className="h-1/5"></div>
-        <div className="text-5xl">测试结束</div>
+        <div className="text-5xl">{i18next.t("resultTitle")}</div>
         <div className="h-[4px]"></div>
         <Card className="w-11/12 pt-4  shadow-lg">
           <CardContent>
@@ -72,7 +74,7 @@ function Result() {
                 className="justify-center"
               />
             </div>
-            <div className="text-md text-center">推测词汇量</div>
+            <div className="text-md text-center">{i18next.t("scoreLabal")}</div>
           </CardContent>
         </Card>
         <Card className="w-11/12 px-4 pt-12 pb-2 shadow-lg">
@@ -86,7 +88,7 @@ function Result() {
       <div className="w-full flex flex-col items-center space-y-1">
         <div className="h-1/5"></div>
         <Link to={"/test"}>
-          <Button size={"lg"}>再来一次</Button>
+          <Button size={"lg"}>{i18next.t("again")}</Button>
         </Link>
         <Button
           size={"lg"}
@@ -94,7 +96,7 @@ function Result() {
             handleSaveAsImage();
           }}
         >
-          保存结果
+          {i18next.t("save")}
         </Button>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { produce } from "immer";
 import { useNavigate } from "react-router-dom";
+import i18next from "@/i18n/_index";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -85,19 +86,21 @@ function Test() {
               navigate("/result?score=" + score.toString());
             }}
           >
-            结束
+            {i18next.t("end")}
           </Button>
         )}{" "}
         {progressRate === 100 ? (
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button size={"lg"}>继续</Button>
+              <Button size={"lg"}>{i18next.t("continue")}</Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>你已达成100题，要继续吗？</AlertDialogTitle>
+                <AlertDialogTitle>
+                  {i18next.t("endConfirmTitle")}
+                </AlertDialogTitle>
                 <AlertDialogDescription>
-                  现在可以结束答题并查看结果，也可以继续答题提高结果的准确度
+                  {i18next.t("endConfirmDesc")}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
@@ -107,10 +110,10 @@ function Test() {
                     navigate("/result?score=" + score.toString());
                   }}
                 >
-                  结束
+                  {i18next.t("end")}
                 </AlertDialogCancel>
                 <AlertDialogAction onClick={() => next(disPlayCandidata)}>
-                  继续
+                  {i18next.t("contiune")}
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -123,7 +126,7 @@ function Test() {
                 next(disPlayCandidata);
               }}
             >
-              继续
+              {i18next.t("contiune")}
             </Button>
           </>
         )}
