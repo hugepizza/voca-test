@@ -2,8 +2,13 @@ import { Button } from "@/components/ui/button";
 import AnimatedNumbers from "react-animated-numbers";
 import { Link, useSearchParams } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
+import domtoimage from "dom-to-image";
+
+import { useRef } from "react";
 function Result() {
+  const container = useRef<HTMLDivElement>(null);
   const [searchParams] = useSearchParams();
+
   const score = parseInt(searchParams.get("score") || "0", 10);
   const getLevel = (score: number): [number, string] => {
     if (score < 3000) {
@@ -23,12 +28,35 @@ function Result() {
     }
   };
   const [level, comment] = getLevel(score);
+  const handleSaveAsImage = () => {
+    if (container.current) {
+      console.log("copiedContent", container.current);
+      const waterMark = document.createElement("div");
+      waterMark.innerText = "结果来自 https://vocatest.online/";
+      waterMark.setAttribute(
+        "class",
+        "absolute bottom-2 right-2 font-medium text-gray-400"
+      );
+      container.current.appendChild(waterMark);
+      domtoimage
+        .toPng(container.current)
+        .then((dataUrl) => {
+          const link = document.createElement("a");
+          link.href = dataUrl;
+          link.download = "testvoca.png";
+          link.click();
+        })
+        .catch((error) => {
+          console.error("Error while saving as image:", error);
+        });
+    }
+  };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full bg-white" ref={container}>
       <div className="w-full h-2/3 flex flex-col items-center space-y-1">
         <div className="h-1/5"></div>
-        <div className="text-5xl"> 测试结束</div>
+        <div className="text-5xl">测试结束</div>
         <div className="h-[4px]"></div>
         <Card className="w-11/12 pt-4  shadow-lg">
           <CardContent>
@@ -55,11 +83,19 @@ function Result() {
         </Card>
       </div>
 
-      <div className="w-full h-1/3 flex flex-col items-center space-y-1">
+      <div className="w-full flex flex-col items-center space-y-1">
         <div className="h-1/5"></div>
         <Link to={"/test"}>
           <Button size={"lg"}>再来一次</Button>
         </Link>
+        <Button
+          size={"lg"}
+          onClick={() => {
+            handleSaveAsImage();
+          }}
+        >
+          保存结果
+        </Button>
       </div>
     </div>
   );

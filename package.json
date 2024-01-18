@@ -18,6 +18,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "csv": "^6.3.6",
+    "dom-to-image": "^2.6.0",
+    "html2canvas": "^1.4.1",
     "immer": "^10.0.3",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
@@ -34,6 +36,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.23.3",
+    "@types/dom-to-image": "^2.6.7",
     "@types/jest": "^29.5.11",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20.11.0",
