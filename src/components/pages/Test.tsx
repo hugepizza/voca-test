@@ -85,6 +85,10 @@ function Test() {
             size={"lg"}
             onClick={() => {
               const score = end();
+              saveHistorys([
+                ...historys,
+                { time: new Date().getTime(), score: score },
+              ]);
               navigate("/result?score=" + score.toString());
             }}
           >
@@ -132,7 +136,7 @@ function Test() {
                 next(disPlayCandidata);
               }}
             >
-              {i18next.t("contiune")}
+              {i18next.t("continue")}
             </Button>
           </>
         )}

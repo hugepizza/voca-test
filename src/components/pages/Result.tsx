@@ -60,9 +60,11 @@ function Result() {
   console.log(prevData);
   const max = prevData.reduce((prev, curr) => (curr > prev ? curr : prev));
   const min = prevData.reduce((prev, curr) => (curr < prev ? curr : prev));
-  const step = (max - min) / 10;
+  const step = (max - min) / 10 || 1;
   const data = prevData.map((e) => ({ score: Math.floor(e / step) }));
-  console.log(data);
+  if (data.length === 1) {
+    data.push(data[0]);
+  }
 
   return (
     <div className="w-full h-full bg-white" ref={container}>
