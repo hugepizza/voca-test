@@ -71,8 +71,8 @@ function Result() {
   return (
     <div className="w-full h-screen pt-12 bg-white" ref={container}>
       <div className="w-full h-4/5 flex flex-col items-center space-y-1">
-        <div className="text-5xl">{i18next.t("resultTitle")}</div>
-        <Card className="w-11/12 pt-4  shadow-lg">
+        <div className="text-4xl">{i18next.t("resultTitle")}</div>
+        <Card className="w-11/12   shadow-lg">
           <CardContent>
             <div>
               <AnimatedNumbers
@@ -96,7 +96,7 @@ function Result() {
             <div className="text-md text-center">{comment}</div>
           </CardContent>
         </Card>
-        <Card className="w-11/12 shadow-lg h-36 grow">
+        <Card className="w-11/12 shadow-lg min-h-12 grow">
           <CardContent className="w-full h-full space-y-2">
             <ResponsiveContainer width="100%" height="90%">
               <LineChart width={300} height={100} data={data}>
