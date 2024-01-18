@@ -18,7 +18,7 @@ const resources = {
         "You have completed 100 questions, do you want to continue?",
       endConfirmDesc:
         "Now you can end the quiz and view the results, or you can continue answering questions to improve the accuracy of the results.",
-      resultTitle: "Test finished",
+      resultTitle: "Test Finished",
       scoreLabal: "assume vocabulary",
       again: "Try Again",
       save: "Save",
