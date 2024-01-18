@@ -69,7 +69,7 @@ function Result() {
   console.log(data);
 
   return (
-    <div className="w-full h-screen pt-12 bg-white" ref={container}>
+    <div className="w-full h-full pt-12 bg-white" ref={container}>
       <div className="w-full h-4/5 flex flex-col items-center space-y-1">
         <div className="text-4xl">{i18next.t("resultTitle")}</div>
         <Card className="w-11/12   shadow-lg">
