@@ -9,4 +9,7 @@ export type Candidate = {
   marked: boolean;
 };
 
-
+export type History = {
+  time: number;
+  score: number;
+};

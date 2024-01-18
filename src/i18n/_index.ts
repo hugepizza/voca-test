@@ -31,6 +31,7 @@ const resources = {
       comment5: "This is enough for you to score high in the IELTS exam.",
       comment6: "Already able to understand most English materials.",
       comment7: "This is close to or equivalent to a native English speaker.",
+      history: "Vocabulary Curve",
     },
   },
 
@@ -57,6 +58,7 @@ const resources = {
       comment5: "这足够你在雅思考试中获得高分",
       comment6: "已经能够读懂大多数英文材料",
       comment7: "这接近或等同于英语母语者",
+      history: "成绩曲线",
     },
   },
 };

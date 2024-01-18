@@ -4,12 +4,15 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import domtoimage from "dom-to-image";
 import i18next from "@/i18n/_index";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import { History } from "../../hooks/voca/type";
+import { LineChart, Line, ResponsiveContainer } from "recharts";
 
 import { useRef } from "react";
 function Result() {
   const container = useRef<HTMLDivElement>(null);
   const [searchParams] = useSearchParams();
-
+  const [historys] = useLocalStorage<History[]>("history", []);
   const score = parseInt(searchParams.get("score") || "0", 10);
   const getLevel = (score: number): [number, string] => {
     if (score < 3000) {
@@ -53,11 +56,18 @@ function Result() {
         });
     }
   };
+  const prevData = historys.map((e) => e.score);
+  console.log(prevData);
+  const max = prevData.reduce((prev, curr) => (curr > prev ? curr : prev));
+  const min = prevData.reduce((prev, curr) => (curr < prev ? curr : prev));
+  const step = (max - min) / 10;
+  const data = prevData.map((e) => ({ score: Math.floor(e / step) }));
+  console.log(data);
 
   return (
     <div className="w-full h-full bg-white" ref={container}>
-      <div className="w-full h-2/3 flex flex-col items-center space-y-1">
-        <div className="h-1/5"></div>
+      <div className="h-[12%] sm:h-[6%]"></div>
+      <div className="w-full flex flex-col items-center space-y-1">
         <div className="text-5xl">{i18next.t("resultTitle")}</div>
         <div className="h-[4px]"></div>
         <Card className="w-11/12 pt-4  shadow-lg">
@@ -78,15 +88,31 @@ function Result() {
           </CardContent>
         </Card>
         <Card className="w-11/12 px-4 pt-12 pb-2 shadow-lg">
-          <CardContent className="space-y-2">
+          <CardContent className="w-full h-full space-y-2">
             <Level level={level} />
             <div className="text-md text-center">{comment}</div>
           </CardContent>
         </Card>
+        <Card className="w-11/12 px-4 pt-12 pb-8 shadow-lg h-48">
+          <CardContent className="w-full h-full space-y-2">
+            <ResponsiveContainer width="100%" height="70%">
+              <LineChart width={300} height={100} data={data}>
+                <Line
+                  type="natural"
+                  dataKey="score"
+                  stroke="#000000"
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+            <div className="text-md text-center">{i18next.t("history")}</div>
+          </CardContent>
+        </Card>
       </div>
 
-      <div className="w-full flex flex-col items-center space-y-1">
-        <div className="h-1/5"></div>
+      <div className="h-4"></div>
+      <div className="w-full flex flex-col sm:flex-row  space-y-1 sm:space-y-0 space-x-0 sm:space-x-1 justify-center items-center ">
         <Link to={"/test"}>
           <Button size={"lg"}>{i18next.t("again")}</Button>
         </Link>

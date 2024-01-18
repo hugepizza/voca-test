@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import useVoca from "../../hooks/voca/_index";
-import { Candidate } from "../../hooks/voca/type";
+import { Candidate, History } from "../../hooks/voca/type";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { produce } from "immer";
@@ -18,6 +18,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 function Test() {
   const { loaded, candidate, progressRate, next, end } = useVoca({
@@ -28,6 +29,7 @@ function Test() {
   useEffect(() => {
     setDisPlayCandidata(candidate);
   }, [candidate]);
+  const [historys, saveHistorys] = useLocalStorage<History[]>("history", []);
   const navigate = useNavigate();
 
   if (!loaded) {
@@ -107,6 +109,10 @@ function Test() {
                 <AlertDialogCancel
                   onClick={() => {
                     const score = end();
+                    saveHistorys([
+                      ...historys,
+                      { time: new Date().getTime(), score: score },
+                    ]);
                     navigate("/result?score=" + score.toString());
                   }}
                 >
