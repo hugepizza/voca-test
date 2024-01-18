@@ -113,7 +113,7 @@ function Test() {
                   {i18next.t("end")}
                 </AlertDialogCancel>
                 <AlertDialogAction onClick={() => next(disPlayCandidata)}>
-                  {i18next.t("contiune")}
+                  {i18next.t("continue")}
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
