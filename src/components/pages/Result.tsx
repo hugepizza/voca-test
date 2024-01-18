@@ -66,12 +66,12 @@ function Result() {
     data.push(data[0]);
   }
 
+  console.log(data);
+
   return (
-    <div className="w-full h-full bg-white" ref={container}>
-      <div className="h-[12%] sm:h-[6%]"></div>
-      <div className="w-full flex flex-col items-center space-y-1">
+    <div className="w-full h-screen pt-12 bg-white" ref={container}>
+      <div className="w-full h-4/5 flex flex-col items-center space-y-1">
         <div className="text-5xl">{i18next.t("resultTitle")}</div>
-        <div className="h-[4px]"></div>
         <Card className="w-11/12 pt-4  shadow-lg">
           <CardContent>
             <div>
@@ -89,18 +89,19 @@ function Result() {
             <div className="text-md text-center">{i18next.t("scoreLabal")}</div>
           </CardContent>
         </Card>
-        <Card className="w-11/12 px-4 pt-12 pb-2 shadow-lg">
+        <Card className="w-11/12 px-4shadow-lg">
           <CardContent className="w-full h-full space-y-2">
+            <div className="h-8"></div>
             <Level level={level} />
             <div className="text-md text-center">{comment}</div>
           </CardContent>
         </Card>
-        <Card className="w-11/12 px-4 pt-12 pb-8 shadow-lg h-48">
+        <Card className="w-11/12 shadow-lg h-36 grow">
           <CardContent className="w-full h-full space-y-2">
-            <ResponsiveContainer width="100%" height="70%">
+            <ResponsiveContainer width="100%" height="90%">
               <LineChart width={300} height={100} data={data}>
                 <Line
-                  type="natural"
+                  type="monotone"
                   dataKey="score"
                   stroke="#000000"
                   strokeWidth={2}
@@ -113,8 +114,7 @@ function Result() {
         </Card>
       </div>
 
-      <div className="h-4"></div>
-      <div className="w-full flex flex-col sm:flex-row  space-y-1 sm:space-y-0 space-x-0 sm:space-x-1 justify-center items-center ">
+      <div className="w-full h-1/5 flex flex-col sm:flex-row  space-y-1 sm:space-y-0 space-x-0 sm:space-x-1 justify-center items-center ">
         <Link to={"/test"}>
           <Button size={"lg"}>{i18next.t("again")}</Button>
         </Link>
