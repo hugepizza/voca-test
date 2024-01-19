@@ -115,7 +115,7 @@ function Result() {
       </div>
 
       <div className="w-full h-1/5 flex flex-col sm:flex-row  space-y-1 sm:space-y-0 space-x-0 sm:space-x-1 justify-center items-center ">
-        <Link to={"/test"}>
+        <Link to={"/testing"}>
           <Button size={"lg"}>{i18next.t("again")}</Button>
         </Link>
         <Button

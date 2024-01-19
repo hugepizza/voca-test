@@ -9,7 +9,8 @@ function App() {
     <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/test" element={<Test />} />
+        <Route path="/test" element={<Index />} />
+        <Route path="/testing" element={<Test />} />
         <Route path="/result" element={<Result />} />
       </Routes>
     </BrowserRouter>

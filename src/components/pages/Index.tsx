@@ -33,7 +33,7 @@ function Index() {
       </div>
       <div className="w-full h-1/2 flex flex-col items-center space-y-1">
         <div className="h-2/5"></div>
-        <Link to={"/test"}>
+        <Link to={"/testing"}>
           <Button
             size={"lg"}
             onClick={() => {
